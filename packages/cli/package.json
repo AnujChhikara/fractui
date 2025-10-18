@@ -1,0 +1,39 @@
+{
+  "name": "@fractui/cli",
+  "version": "0.1.0",
+  "description": "CLI tool for FractUI component library",
+  "main": "./dist/index.js",
+  "bin": {
+    "fractui": "./dist/index.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "clean": "rm -rf dist",
+    "lint": "eslint src --ext .ts",
+    "lint:fix": "eslint src --ext .ts --fix",
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "commander": "^11.0.0",
+    "fs-extra": "^11.0.0",
+    "chalk": "^5.0.0",
+    "prompts": "^2.4.0",
+    "@types/fs-extra": "^11.0.0",
+    "@mui/base": "^5.0.0-beta.70",
+    "clsx": "^2.0.0",
+    "tailwind-merge": "^2.0.0",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "@types/prompts": "^2.4.0",
+    "typescript": "^5.0.0"
+  }
+}

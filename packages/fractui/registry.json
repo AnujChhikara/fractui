@@ -1,0 +1,29 @@
+{
+  "components": [
+    {
+      "name": "button",
+      "type": "component",
+      "files": [
+        {
+          "path": "src/components/button/Button.tsx",
+          "type": "component"
+        }
+      ],
+      "dependencies": ["@base-ui/react"],
+      "devDependencies": [],
+      "registryDependencies": ["utils"]
+    }
+  ],
+  "utils": [
+    {
+      "name": "cn",
+      "files": [
+        {
+          "path": "src/utils/cn.ts",
+          "type": "util"
+        }
+      ],
+      "dependencies": ["clsx", "tailwind-merge"]
+    }
+  ]
+}
