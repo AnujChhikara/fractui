@@ -2,6 +2,7 @@
   "name": "fractui",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "description": "A shadcn-style component library built on Base UI",
   "packageManager": "pnpm@9.0.0",
   "scripts": {
@@ -18,10 +19,11 @@
     "prepare": "husky"
   },
   "devDependencies": {
+    "@eslint/js": "^9.38.0",
     "@types/node": "^20.0.0",
-    "@typescript-eslint/eslint-plugin": "^6.21.0",
-    "@typescript-eslint/parser": "^6.21.0",
-    "eslint": "^8.0.0",
+    "@typescript-eslint/eslint-plugin": "^8.46.1",
+    "@typescript-eslint/parser": "^8.46.1",
+    "eslint": "^9.38.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-import-resolver-typescript": "^4.4.4",
     "eslint-plugin-import": "^2.32.0",
