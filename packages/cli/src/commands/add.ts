@@ -1,8 +1,10 @@
-import fs from 'fs-extra';
-import path from 'path';
 import { execSync } from 'child_process';
+import path from 'path';
+
 import chalk from 'chalk';
+import * as fs from 'fs-extra';
 import prompts from 'prompts';
+
 import { loadRegistry, findComponent, findUtil } from '../utils/registry';
 
 export async function addCommand(componentName: string) {
@@ -13,9 +15,7 @@ export async function addCommand(componentName: string) {
     const component = findComponent(registry, componentName);
 
     if (!component) {
-      console.error(
-        chalk.red(`❌ Component "${componentName}" not found in registry.`)
-      );
+      console.error(chalk.red(`❌ Component "${componentName}" not found in registry.`));
       console.log(chalk.gray('Available components:'));
       registry.components.forEach(comp => {
         console.log(chalk.gray(`  - ${comp.name}`));
@@ -24,11 +24,7 @@ export async function addCommand(componentName: string) {
     }
 
     // Check if component already exists
-    const componentPath = path.join(
-      process.cwd(),
-      'components/ui',
-      `${componentName}.tsx`
-    );
+    const componentPath = path.join(process.cwd(), 'components/ui', `${componentName}.tsx`);
     if (await fs.pathExists(componentPath)) {
       const { overwrite } = await prompts({
         type: 'confirm',
@@ -59,11 +55,7 @@ export async function addCommand(componentName: string) {
           // Copy utility files
           for (const file of util.files) {
             const sourcePath = path.resolve(__dirname, '../', file.path);
-            const destPath = path.join(
-              process.cwd(),
-              'lib/utils',
-              path.basename(file.path)
-            );
+            const destPath = path.join(process.cwd(), 'lib/utils', path.basename(file.path));
 
             if (await fs.pathExists(sourcePath)) {
               await fs.copy(sourcePath, destPath);
@@ -77,11 +69,7 @@ export async function addCommand(componentName: string) {
     // Copy component files
     for (const file of component.files) {
       const sourcePath = path.resolve(__dirname, '../', file.path);
-      const destPath = path.join(
-        process.cwd(),
-        'components/ui',
-        path.basename(file.path)
-      );
+      const destPath = path.join(process.cwd(), 'components/ui', path.basename(file.path));
 
       if (await fs.pathExists(sourcePath)) {
         await fs.copy(sourcePath, destPath);
@@ -91,9 +79,7 @@ export async function addCommand(componentName: string) {
       }
     }
 
-    console.log(
-      chalk.green(`✅ Successfully added ${componentName} component!`)
-    );
+    console.log(chalk.green(`✅ Successfully added ${componentName} component!`));
     console.log(
       chalk.gray(
         `Import it with: import { ${componentName.charAt(0).toUpperCase() + componentName.slice(1)} } from '@/components/ui/${componentName}'`

@@ -1,5 +1,6 @@
-import fs from 'fs-extra';
 import path from 'path';
+
+import * as fs from 'fs-extra';
 
 export interface RegistryFile {
   path: string;
@@ -32,16 +33,10 @@ export async function loadRegistry(): Promise<Registry> {
   return registry;
 }
 
-export function findComponent(
-  registry: Registry,
-  name: string
-): RegistryComponent | undefined {
+export function findComponent(registry: Registry, name: string): RegistryComponent | undefined {
   return registry.components.find(component => component.name === name);
 }
 
-export function findUtil(
-  registry: Registry,
-  name: string
-): RegistryUtil | undefined {
+export function findUtil(registry: Registry, name: string): RegistryUtil | undefined {
   return registry.utils.find(util => util.name === name);
 }

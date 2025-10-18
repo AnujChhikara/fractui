@@ -1,7 +1,8 @@
-import fs from 'fs-extra';
-import path from 'path';
 import { execSync } from 'child_process';
+import path from 'path';
+
 import chalk from 'chalk';
+import * as fs from 'fs-extra';
 
 const TAILWIND_CONFIG = `/** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -116,9 +117,7 @@ export async function initCommand() {
     // Check if we're in a Next.js project
     const packageJsonPath = path.join(process.cwd(), 'package.json');
     if (!(await fs.pathExists(packageJsonPath))) {
-      throw new Error(
-        'No package.json found. Please run this command in a Next.js project.'
-      );
+      throw new Error('No package.json found. Please run this command in a Next.js project.');
     }
 
     const packageJson = await fs.readJson(packageJsonPath);
@@ -163,11 +162,7 @@ export async function initCommand() {
     await fs.writeFile(cnPath, CN_UTIL);
 
     console.log(chalk.green('✅ FractUI initialized successfully!'));
-    console.log(
-      chalk.gray(
-        'You can now add components with: fractui add <component-name>'
-      )
-    );
+    console.log(chalk.gray('You can now add components with: fractui add <component-name>'));
   } catch (error) {
     console.error(chalk.red('❌ Error initializing FractUI:'), error);
     process.exit(1);
