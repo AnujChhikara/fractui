@@ -121,8 +121,8 @@ export async function initCommand() {
     }
 
     const packageJson = await fs.readJson(packageJsonPath);
-    if (!packageJson.dependencies?.next) {
-      throw new Error("This doesn't appear to be a Next.js project.");
+    if (!packageJson.dependencies?.next && !packageJson.dependencies?.react) {
+      throw new Error("This doesn't appear to be a React project.");
     }
 
     // Install dependencies
@@ -154,6 +154,12 @@ export async function initCommand() {
       const stylesCssPath = path.join(process.cwd(), 'styles/globals.css');
       if (await fs.pathExists(stylesCssPath)) {
         await fs.writeFile(stylesCssPath, GLOBALS_CSS);
+      } else {
+        // For Vite projects, try src/index.css
+        const indexCssPath = path.join(process.cwd(), 'src/index.css');
+        if (await fs.pathExists(indexCssPath)) {
+          await fs.writeFile(indexCssPath, GLOBALS_CSS);
+        }
       }
     }
 

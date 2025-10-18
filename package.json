@@ -16,7 +16,11 @@
     "clean": "pnpm -r clean",
     "check": "pnpm lint && pnpm type-check && pnpm format:check",
     "fix": "pnpm lint:fix && pnpm format",
-    "prepare": "husky"
+    "runfix": "pnpm lint:fix && pnpm format && pnpm type-check",
+    "prepare": "husky",
+    "publish:core": "cd packages/fractui && npm publish --access public",
+    "publish:cli": "cd packages/cli && npm publish --access public",
+    "publish:all": "pnpm publish:core && pnpm publish:cli"
   },
   "devDependencies": {
     "@eslint/js": "^9.38.0",

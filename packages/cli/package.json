@@ -2,12 +2,28 @@
   "name": "@fractui/cli",
   "version": "0.1.0",
   "description": "CLI tool for FractUI component library",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/fractui.git",
+    "directory": "packages/cli"
+  },
+  "keywords": [
+    "cli",
+    "components",
+    "ui",
+    "fractui",
+    "react"
+  ],
+  "license": "MIT",
   "main": "./dist/index.js",
   "bin": {
     "fractui": "./dist/index.js"
   },
   "files": [
-    "dist"
+    "dist",
+    "src/components",
+    "src/utils",
+    "registry.json"
   ],
   "scripts": {
     "build": "tsc",

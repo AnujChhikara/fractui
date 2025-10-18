@@ -9,7 +9,7 @@
           "type": "component"
         }
       ],
-      "dependencies": ["@base-ui/react"],
+      "dependencies": [],
       "devDependencies": [],
       "registryDependencies": ["cn"]
     }

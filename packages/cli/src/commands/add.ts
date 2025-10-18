@@ -5,7 +5,7 @@ import chalk from 'chalk';
 import * as fs from 'fs-extra';
 import prompts from 'prompts';
 
-import { loadRegistry, findComponent, findUtil } from '../utils/registry';
+import { findComponent, findUtil, loadRegistry } from '../utils/registry';
 
 export async function addCommand(componentName: string) {
   console.log(chalk.blue(`Adding ${componentName} component...`));
@@ -68,14 +68,29 @@ export async function addCommand(componentName: string) {
 
     // Copy component files
     for (const file of component.files) {
-      const sourcePath = path.resolve(__dirname, '../', file.path);
+      // Try multiple possible source paths
+      const possiblePaths = [
+        path.resolve(__dirname, '../', file.path),
+        path.resolve(__dirname, '../../', file.path),
+        path.resolve(process.cwd(), 'packages/fractui', file.path),
+      ];
+
+      let sourcePath = null;
+      for (const possiblePath of possiblePaths) {
+        if (await fs.pathExists(possiblePath)) {
+          sourcePath = possiblePath;
+          break;
+        }
+      }
+
       const destPath = path.join(process.cwd(), 'components/ui', path.basename(file.path));
 
-      if (await fs.pathExists(sourcePath)) {
+      if (sourcePath) {
         await fs.copy(sourcePath, destPath);
         console.log(chalk.green(`✅ Copied ${componentName} component`));
       } else {
-        console.warn(chalk.yellow(`⚠️  Source file not found: ${sourcePath}`));
+        console.warn(chalk.yellow(`⚠️  Source file not found. Tried:`));
+        possiblePaths.forEach(p => console.warn(chalk.yellow(`    ${p}`)));
       }
     }
 

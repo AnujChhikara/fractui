@@ -2,6 +2,19 @@
   "name": "@fractui/core",
   "version": "0.1.0",
   "description": "Core component library for FractUI",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/fractui.git",
+    "directory": "packages/fractui"
+  },
+  "keywords": [
+    "react",
+    "components",
+    "ui",
+    "tailwind",
+    "fractui"
+  ],
+  "license": "MIT",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",

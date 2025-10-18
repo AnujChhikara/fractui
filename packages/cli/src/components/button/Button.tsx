@@ -1,4 +1,3 @@
-import { Button as BaseButton } from '@mui/base/Button';
 import * as React from 'react';
 
 import { cn } from '../../utils/cn';
@@ -10,7 +9,7 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
 
 export function Button({ className, children, ...props }: ButtonProps) {
   return (
-    <BaseButton
+    <button
       className={cn(
         'px-4 py-2 rounded-md font-medium',
         'bg-blue-600 text-white hover:bg-blue-700',
@@ -21,6 +20,6 @@ export function Button({ className, children, ...props }: ButtonProps) {
       {...props}
     >
       {children}
-    </BaseButton>
+    </button>
   );
 }
