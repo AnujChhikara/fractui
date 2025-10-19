@@ -138,6 +138,7 @@ export async function addCommand(componentName: string) {
 
       if (sourcePath) {
         await fs.copy(sourcePath, destPath);
+
         console.log(chalk.green(`[✓] Copied ${componentName} component`));
       } else {
         console.warn(chalk.yellow(`[!] Source file not found. Tried:`));

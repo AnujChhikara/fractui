@@ -9,7 +9,7 @@
           "type": "component"
         }
       ],
-      "dependencies": ["@mui/base", "class-variance-authority"],
+      "dependencies": ["@mui/base", "class-variance-authority", "clsx", "tailwind-merge"],
       "devDependencies": [],
       "registryDependencies": ["cn"]
     }
@@ -19,7 +19,7 @@
       "name": "cn",
       "files": [
         {
-          "path": "node_modules/@fractui/core/src/utils/cn.ts",
+          "path": "node_modules/@fractui/core/src/lib/utils/cn.ts",
           "type": "util"
         }
       ],

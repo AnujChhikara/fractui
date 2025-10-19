@@ -19,7 +19,7 @@
       "name": "cn",
       "files": [
         {
-          "path": "src/utils/cn.ts",
+          "path": "src/lib/utils/cn.ts",
           "type": "util"
         }
       ],

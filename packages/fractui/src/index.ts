@@ -1,5 +1,5 @@
 // Export utilities
-export { cn } from './utils/cn';
+export { cn } from './lib/utils/cn';
 
 // Export components
 export { Button } from './components/button/Button';
