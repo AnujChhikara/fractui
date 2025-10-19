@@ -1,15 +1,15 @@
 {
   "components": [
     {
-      "name": "button",
+      "name": "input",
       "type": "component",
       "files": [
         {
-          "path": "node_modules/@fractui/core/src/components/button/Button.tsx",
+          "path": "node_modules/@fractui/core/src/components/input/Input.tsx",
           "type": "component"
         }
       ],
-      "dependencies": ["@mui/base", "class-variance-authority", "clsx", "tailwind-merge"],
+      "dependencies": ["@base-ui-components/react"],
       "devDependencies": [],
       "registryDependencies": ["cn"]
     }

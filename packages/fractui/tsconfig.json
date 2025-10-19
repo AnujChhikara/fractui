@@ -7,7 +7,8 @@
     "declaration": true,
     "declarationMap": true,
     "sourceMap": true,
-    "noEmit": false
+    "noEmit": false,
+    "lib": ["ES2022", "DOM", "DOM.Iterable"]
   },
   "include": ["src/**/*", "registry.json"],
   "exclude": ["node_modules", "dist", "**/*.test.*", "**/*.spec.*"]

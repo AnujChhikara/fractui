@@ -1,6 +1,6 @@
 {
   "name": "@fractui/core",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Core component library for FractUI",
   "repository": {
     "type": "git",
@@ -39,7 +39,7 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
-    "@mui/base": "^5.0.0-beta.70",
+    "@base-ui-components/react": "1.0.0-beta.4",
     "clsx": "^2.0.0",
     "tailwind-merge": "^2.0.0",
     "class-variance-authority": "^0.7.0"

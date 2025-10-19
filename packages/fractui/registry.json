@@ -1,17 +1,17 @@
 {
   "components": [
     {
-      "name": "button",
+      "name": "input",
       "type": "component",
       "files": [
         {
-          "path": "src/components/button/Button.tsx",
+          "path": "src/components/input/Input.tsx",
           "type": "component"
         }
       ],
-      "dependencies": ["@mui/base"],
+      "dependencies": ["@base-ui-components/react"],
       "devDependencies": [],
-      "registryDependencies": ["utils"]
+      "registryDependencies": ["cn"]
     }
   ],
   "utils": [
