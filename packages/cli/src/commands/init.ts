@@ -1,13 +1,15 @@
-import { execSync } from 'child_process';
 import path from 'path';
 
 import chalk from 'chalk';
 import * as fs from 'fs-extra';
 
+import { installPackages } from '../utils/package-manager';
+
 const TAILWIND_CONFIG = `/** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: 'class',
   content: [
+    './src/**/*.{js,ts,jsx,tsx}',
     './pages/**/*.{js,ts,jsx,tsx,mdx}',
     './components/**/*.{js,ts,jsx,tsx,mdx}',
     './app/**/*.{js,ts,jsx,tsx,mdx}',
@@ -15,31 +17,31 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        background: 'var(--background)',
-        foreground: 'var(--foreground)',
+        background: 'hsl(var(--background))',
+        foreground: 'hsl(var(--foreground))',
         primary: {
-          DEFAULT: 'var(--primary)',
-          foreground: 'var(--primary-foreground)',
+          DEFAULT: 'hsl(var(--primary))',
+          foreground: 'hsl(var(--primary-foreground))',
         },
         secondary: {
-          DEFAULT: 'var(--secondary)',
-          foreground: 'var(--secondary-foreground)',
+          DEFAULT: 'hsl(var(--secondary))',
+          foreground: 'hsl(var(--secondary-foreground))',
         },
         muted: {
-          DEFAULT: 'var(--muted)',
-          foreground: 'var(--muted-foreground)',
+          DEFAULT: 'hsl(var(--muted))',
+          foreground: 'hsl(var(--muted-foreground))',
         },
         accent: {
-          DEFAULT: 'var(--accent)',
-          foreground: 'var(--accent-foreground)',
+          DEFAULT: 'hsl(var(--accent))',
+          foreground: 'hsl(var(--accent-foreground))',
         },
         destructive: {
-          DEFAULT: 'var(--destructive)',
-          foreground: 'var(--destructive-foreground)',
+          DEFAULT: 'hsl(var(--destructive))',
+          foreground: 'hsl(var(--destructive-foreground))',
         },
-        border: 'var(--border)',
-        input: 'var(--input)',
-        ring: 'var(--ring)',
+        border: 'hsl(var(--border))',
+        input: 'hsl(var(--input))',
+        ring: 'hsl(var(--ring))',
       },
       borderRadius: {
         lg: 'var(--radius)',
@@ -51,9 +53,7 @@ module.exports = {
   plugins: [],
 }`;
 
-const GLOBALS_CSS = `@tailwind base;
-@tailwind components;
-@tailwind utilities;
+const GLOBALS_CSS = `@import "tailwindcss";
 
 @layer base {
   :root {
@@ -95,11 +95,9 @@ const GLOBALS_CSS = `@tailwind base;
 }
 
 @layer base {
-  * {
-    @apply border-border;
-  }
   body {
-    @apply bg-background text-foreground;
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
   }
 }`;
 
@@ -136,7 +134,7 @@ export async function initCommand() {
       'class-variance-authority',
     ];
 
-    execSync(`npm install ${dependencies.join(' ')}`, { stdio: 'inherit' });
+    await installPackages(dependencies);
 
     // Create directories
     await fs.ensureDir(path.join(process.cwd(), 'components/ui'));
@@ -167,10 +165,10 @@ export async function initCommand() {
     const cnPath = path.join(process.cwd(), 'lib/utils/cn.ts');
     await fs.writeFile(cnPath, CN_UTIL);
 
-    console.log(chalk.green('✅ FractUI initialized successfully!'));
+    console.log(chalk.green('[✓] FractUI initialized successfully'));
     console.log(chalk.gray('You can now add components with: fractui add <component-name>'));
   } catch (error) {
-    console.error(chalk.red('❌ Error initializing FractUI:'), error);
+    console.error(chalk.red('[✗] Error initializing FractUI:'), error);
     process.exit(1);
   }
 }

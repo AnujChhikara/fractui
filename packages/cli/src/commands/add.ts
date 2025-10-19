@@ -1,10 +1,10 @@
-import { execSync } from 'child_process';
 import path from 'path';
 
 import chalk from 'chalk';
 import * as fs from 'fs-extra';
 import prompts from 'prompts';
 
+import { installPackages } from '../utils/package-manager';
 import { findComponent, findUtil, loadRegistry } from '../utils/registry';
 
 export async function addCommand(componentName: string) {
@@ -15,7 +15,7 @@ export async function addCommand(componentName: string) {
     const component = findComponent(registry, componentName);
 
     if (!component) {
-      console.error(chalk.red(`❌ Component "${componentName}" not found in registry.`));
+      console.error(chalk.red(`[✗] Component "${componentName}" not found in registry`));
       console.log(chalk.gray('Available components:'));
       registry.components.forEach(comp => {
         console.log(chalk.gray(`  - ${comp.name}`));
@@ -34,7 +34,7 @@ export async function addCommand(componentName: string) {
       });
 
       if (!overwrite) {
-        console.log(chalk.yellow('Skipped adding component.'));
+        console.log(chalk.yellow('Skipped adding component'));
         return;
       }
     }
@@ -42,9 +42,7 @@ export async function addCommand(componentName: string) {
     // Install dependencies
     if (component.dependencies.length > 0) {
       console.log(chalk.yellow('Installing dependencies...'));
-      execSync(`npm install ${component.dependencies.join(' ')}`, {
-        stdio: 'inherit',
-      });
+      await installPackages(component.dependencies);
     }
 
     // Install registry dependencies (utils)
@@ -59,7 +57,7 @@ export async function addCommand(componentName: string) {
 
             if (await fs.pathExists(sourcePath)) {
               await fs.copy(sourcePath, destPath);
-              console.log(chalk.green(`✅ Copied ${utilName} utility`));
+              console.log(chalk.green(`[✓] Copied ${utilName} utility`));
             }
           }
         }
@@ -87,21 +85,21 @@ export async function addCommand(componentName: string) {
 
       if (sourcePath) {
         await fs.copy(sourcePath, destPath);
-        console.log(chalk.green(`✅ Copied ${componentName} component`));
+        console.log(chalk.green(`[✓] Copied ${componentName} component`));
       } else {
-        console.warn(chalk.yellow(`⚠️  Source file not found. Tried:`));
+        console.warn(chalk.yellow(`[!] Source file not found. Tried:`));
         possiblePaths.forEach(p => console.warn(chalk.yellow(`    ${p}`)));
       }
     }
 
-    console.log(chalk.green(`✅ Successfully added ${componentName} component!`));
+    console.log(chalk.green(`[✓] Successfully added ${componentName} component`));
     console.log(
       chalk.gray(
         `Import it with: import { ${componentName.charAt(0).toUpperCase() + componentName.slice(1)} } from '@/components/ui/${componentName}'`
       )
     );
   } catch (error) {
-    console.error(chalk.red('❌ Error adding component:'), error);
+    console.error(chalk.red('[✗] Error adding component:'), error);
     process.exit(1);
   }
 }

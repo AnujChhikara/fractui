@@ -1,16 +1,16 @@
 # FractUI
 
-A shadcn-style component library built with React and Tailwind CSS.
+A production-ready component library built with React and Tailwind CSS, inspired by shadcn/ui.
 
 ## Features
 
-- 🎨 **Beautiful Components** - Pre-built components with consistent design
-- 🚀 **Copy & Paste** - Open source components you can customize
-- 🎨 **Tailwind CSS** - Styled with Tailwind CSS and CSS variables
-- 📦 **CLI Tool** - Easy installation with `npx @fractui/cli add <component>`
-- 🌙 **Dark Mode** - Built-in dark mode support
-- ♿ **Accessible** - All components follow accessibility best practices
-- ⚡ **Fast** - Optimized for performance with tree-shaking support
+- **Beautiful Components** - Pre-built components with consistent design
+- **Copy & Paste** - Open source components you can customize
+- **Tailwind CSS** - Styled with Tailwind CSS and CSS variables
+- **CLI Tool** - Easy installation with `npx @fractui/cli add <component>`
+- **Dark Mode** - Built-in dark mode support
+- **Accessible** - All components follow accessibility best practices
+- **Fast** - Optimized for performance with tree-shaking support
 
 ## Quick Start
 
@@ -53,10 +53,28 @@ export default function Home() {
 
 ## Development
 
-This is a monorepo with two packages:
+This is a monorepo managed with pnpm, containing two main packages:
 
-- `packages/fractui/` - The component library
-- `packages/cli/` - The CLI tool
+- `packages/fractui/` - Core component library
+- `packages/cli/` - CLI tool for component installation
+
+### Project Structure
+
+```
+fractui/
+├── packages/
+│   ├── fractui/          # Core component library
+│   │   ├── src/          # Source components and utilities
+│   │   ├── dist/         # Built library output
+│   │   └── registry.json # Component registry
+│   └── cli/              # CLI tool
+│       ├── src/          # CLI source code
+│       ├── dist/         # Built CLI output
+│       └── registry.json # CLI component registry
+├── .github/              # GitHub Actions workflows
+├── package.json          # Root package configuration
+└── pnpm-workspace.yaml   # pnpm workspace configuration
+```
 
 ### Setup
 
@@ -64,20 +82,24 @@ This is a monorepo with two packages:
 # Install dependencies
 pnpm install
 
-# Build packages
+# Build all packages
 pnpm build
 
-# Run linting
-pnpm lint
+# Development mode (watch)
+pnpm dev
 
-# Run type checking
-pnpm type-check
+# Code quality checks
+pnpm lint              # Run linting
+pnpm lint:fix          # Fix linting issues
+pnpm type-check        # TypeScript type checking
+pnpm format            # Format code
+pnpm format:check      # Check formatting
+pnpm check             # Run all checks
+pnpm fix               # Fix lint and format issues
+pnpm runfix            # Fix all issues (lint, format, type-check)
 
-# Run format checking
-pnpm format:check
-
-# Fix all issues (lint, format, and type-check)
-pnpm runfix
+# Clean build artifacts
+pnpm clean
 ```
 
 ### Testing Components
@@ -113,20 +135,34 @@ pnpm publish:core
 # Publish CLI tool
 pnpm publish:cli
 
-# Publish both
+# Publish both packages
 pnpm publish:all
 ```
 
-## Project Structure
+### Package-specific Commands
 
+Each package has its own set of commands:
+
+**Core Library (`packages/fractui/`):**
+
+```bash
+cd packages/fractui
+pnpm build        # Build the library
+pnpm dev          # Watch mode
+pnpm clean        # Clean dist folder
+pnpm lint         # Lint source files
+pnpm type-check   # TypeScript checking
 ```
-fractui/
-├── packages/
-│   ├── fractui/          # Core component library
-│   └── cli/              # CLI tool for adding components
-├── .github/
-│   └── workflows/       # GitHub Actions CI
-└── README.md
+
+**CLI Tool (`packages/cli/`):**
+
+```bash
+cd packages/cli
+pnpm build        # Build the CLI
+pnpm dev          # Watch mode
+pnpm clean        # Clean dist folder
+pnpm lint         # Lint source files
+pnpm type-check   # TypeScript checking
 ```
 
 ## License
