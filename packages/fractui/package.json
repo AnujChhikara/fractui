@@ -23,7 +23,8 @@
       "import": "./dist/index.mjs",
       "require": "./dist/index.js",
       "types": "./dist/index.d.ts"
-    }
+    },
+    "./styles.css": "./src/styles.css"
   },
   "files": [
     "dist",

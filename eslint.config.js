@@ -27,6 +27,8 @@ export default [
         console: 'readonly',
         process: 'readonly',
         __dirname: 'readonly',
+        document: 'readonly',
+        window: 'readonly',
         HTMLButtonElement: 'readonly',
         HTMLInputElement: 'readonly',
         HTMLElement: 'readonly',
@@ -220,6 +222,9 @@ export default [
       'packages/*/build/',
       'packages/*/.eslintrc.js',
       'packages/*/node_modules/',
+      'dev/dist/',
+      'dev/build/',
+      'dev/node_modules/',
     ],
   },
 ];
