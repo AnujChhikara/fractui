@@ -7,6 +7,10 @@
         {
           "path": "src/components/input/Input.tsx",
           "type": "component"
+        },
+        {
+          "path": "src/components/input/input-variants.ts",
+          "type": "component"
         }
       ],
       "dependencies": ["@base-ui-components/react"],

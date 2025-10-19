@@ -1,6 +1,6 @@
 {
   "name": "@fractui/cli",
-  "version": "0.1.9",
+  "version": "0.1.12",
   "description": "CLI tool for FractUI component library",
   "repository": {
     "type": "git",
