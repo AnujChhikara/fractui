@@ -7,10 +7,24 @@ import prompts from 'prompts';
 import { installPackages } from '../utils/package-manager';
 import { findComponent, findUtil, loadRegistry } from '../utils/registry';
 
+async function ensureFractuiCoreInstalled() {
+  const corePath = path.resolve(process.cwd(), 'node_modules/@fractui/core');
+
+  if (!(await fs.pathExists(corePath))) {
+    console.log(chalk.yellow('Installing @fractui/core...'));
+    await installPackages(['@fractui/core@latest']);
+  }
+
+  return corePath;
+}
+
 export async function addCommand(componentName: string) {
   console.log(chalk.blue(`Adding ${componentName} component...`));
 
   try {
+    // Ensure @fractui/core is installed
+    await ensureFractuiCoreInstalled();
+
     const registry = await loadRegistry();
     const component = findComponent(registry, componentName);
 
