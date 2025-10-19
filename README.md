@@ -24,7 +24,7 @@ This will:
 
 - Install required dependencies (Tailwind CSS, clsx, tailwind-merge, etc.)
 - Set up Tailwind configuration with CSS variables
-- Create the `components/ui/` and `lib/utils/` directories
+- Create the `src/components/ui/` and `src/lib/utils/` directories
 - Add the `cn` utility function
 
 ### 2. Add components
@@ -36,12 +36,17 @@ npx @fractui/cli@latest add button
 ### 3. Use in your code
 
 ```tsx
-import { Button } from './components/ui/Button';
+import { Button } from '@/components/ui/button';
 
 export default function Home() {
   return (
-    <div>
-      <Button>Click me</Button>
+    <div className="space-x-4">
+      <Button>Default</Button>
+      <Button variant="destructive">Delete</Button>
+      <Button variant="outline">Outline</Button>
+      <Button variant="secondary">Secondary</Button>
+      <Button variant="ghost">Ghost</Button>
+      <Button variant="link">Link</Button>
     </div>
   );
 }
@@ -49,7 +54,11 @@ export default function Home() {
 
 ## Available Components
 
-- **Button** - Basic button component with hover and focus states
+- **Button** - Versatile button component with multiple variants and sizes
+  - Variants: `default`, `destructive`, `outline`, `secondary`, `ghost`, `link`
+  - Sizes: `default`, `sm`, `lg`, `icon`
+
+For detailed component documentation, see [COMPONENTS.md](./COMPONENTS.md).
 
 ## Development
 
@@ -122,9 +131,8 @@ npx @fractui/cli@latest add button
 
 1. Create your component in `packages/fractui/src/components/`
 2. Add it to the registry in `packages/fractui/registry.json`
-3. Update the CLI registry in `packages/cli/registry.json`
-4. Copy the component to `packages/cli/src/components/`
-5. Build and test
+3. Update the CLI registry in `packages/cli/registry.json` to point to the core library component
+4. Build and test
 
 ### Publishing
 

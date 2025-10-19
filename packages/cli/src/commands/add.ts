@@ -24,7 +24,7 @@ export async function addCommand(componentName: string) {
     }
 
     // Check if component already exists
-    const componentPath = path.join(process.cwd(), 'components/ui', `${componentName}.tsx`);
+    const componentPath = path.join(process.cwd(), 'src/components/ui', `${componentName}.tsx`);
     if (await fs.pathExists(componentPath)) {
       const { overwrite } = await prompts({
         type: 'confirm',
@@ -53,7 +53,7 @@ export async function addCommand(componentName: string) {
           // Copy utility files
           for (const file of util.files) {
             const sourcePath = path.resolve(__dirname, '../', file.path);
-            const destPath = path.join(process.cwd(), 'lib/utils', path.basename(file.path));
+            const destPath = path.join(process.cwd(), 'src/lib/utils', path.basename(file.path));
 
             if (await fs.pathExists(sourcePath)) {
               await fs.copy(sourcePath, destPath);
@@ -81,7 +81,7 @@ export async function addCommand(componentName: string) {
         }
       }
 
-      const destPath = path.join(process.cwd(), 'components/ui', path.basename(file.path));
+      const destPath = path.join(process.cwd(), 'src/components/ui', path.basename(file.path));
 
       if (sourcePath) {
         await fs.copy(sourcePath, destPath);

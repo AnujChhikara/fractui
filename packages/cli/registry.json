@@ -5,11 +5,11 @@
       "type": "component",
       "files": [
         {
-          "path": "src/components/button/Button.tsx",
+          "path": "../../fractui/src/components/button/Button.tsx",
           "type": "component"
         }
       ],
-      "dependencies": [],
+      "dependencies": ["@mui/base", "class-variance-authority"],
       "devDependencies": [],
       "registryDependencies": ["cn"]
     }

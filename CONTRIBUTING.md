@@ -233,12 +233,18 @@ pnpm type-check   # TypeScript type checking
    }
    ```
 
-### 3. Copy to CLI
+### 3. Update CLI Registry
 
-1. **Copy component** to `packages/cli/src/components/[component-name]/`
-2. **Update CLI registry** if needed
+1. **Update CLI registry** (`packages/cli/registry.json`) to point to the core library component
+2. **Add dependencies** that the component needs
 
-### 4. Build and Test
+### 4. Update Documentation
+
+1. **Update COMPONENTS.md** with the new component details
+2. **Add usage examples** and variant descriptions
+3. **Document all props** and their purposes
+
+### 5. Build and Test
 
 ```bash
 # Build all packages

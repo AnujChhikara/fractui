@@ -137,8 +137,8 @@ export async function initCommand() {
     await installPackages(dependencies);
 
     // Create directories
-    await fs.ensureDir(path.join(process.cwd(), 'components/ui'));
-    await fs.ensureDir(path.join(process.cwd(), 'lib/utils'));
+    await fs.ensureDir(path.join(process.cwd(), 'src/components/ui'));
+    await fs.ensureDir(path.join(process.cwd(), 'src/lib/utils'));
 
     // Create tailwind.config.js
     const tailwindConfigPath = path.join(process.cwd(), 'tailwind.config.js');
@@ -162,7 +162,7 @@ export async function initCommand() {
     }
 
     // Create cn utility
-    const cnPath = path.join(process.cwd(), 'lib/utils/cn.ts');
+    const cnPath = path.join(process.cwd(), 'src/lib/utils/cn.ts');
     await fs.writeFile(cnPath, CN_UTIL);
 
     console.log(chalk.green('[✓] FractUI initialized successfully'));
