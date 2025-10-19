@@ -1,8 +1,11 @@
 import { Link } from 'react-router-dom';
 
+import { ThemeToggle } from '../components/ThemeToggle';
+
 export default function Home() {
   return (
     <div className="p-8 space-y-12">
+      <ThemeToggle />
       <div>
         <h1 className="text-4xl font-bold mb-4">FractUI Dev Work</h1>
         <p className="text-gray-600">Component development and testing environment</p>

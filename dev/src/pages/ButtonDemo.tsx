@@ -1,8 +1,11 @@
 import { Link } from 'react-router-dom';
 
+import { ThemeToggle } from '../components/ThemeToggle';
+
 export default function ButtonDemo() {
   return (
     <div className="p-8 space-y-8">
+      <ThemeToggle />
       <div className="flex items-center gap-4 mb-8">
         <Link to="/" className="text-gray-600 hover:text-gray-900 transition-colors">
           ← Back to Home
