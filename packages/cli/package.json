@@ -1,6 +1,6 @@
 {
   "name": "@fractui/cli",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "CLI tool for FractUI component library",
   "repository": {
     "type": "git",
@@ -21,7 +21,6 @@
   },
   "files": [
     "dist",
-    "src/components",
     "src/utils",
     "registry.json"
   ],
@@ -39,11 +38,9 @@
     "chalk": "^5.0.0",
     "prompts": "^2.4.0",
     "@types/fs-extra": "^11.0.0",
-    "@mui/base": "^5.0.0-beta.70",
+    "@fractui/core": "^0.1.2",
     "clsx": "^2.0.0",
-    "tailwind-merge": "^2.0.0",
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0"
+    "tailwind-merge": "^2.0.0"
   },
   "devDependencies": {
     "@types/node": "^20.0.0",

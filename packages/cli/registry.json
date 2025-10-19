@@ -5,7 +5,7 @@
       "type": "component",
       "files": [
         {
-          "path": "../../fractui/src/components/button/Button.tsx",
+          "path": "node_modules/@fractui/core/src/components/button/Button.tsx",
           "type": "component"
         }
       ],
@@ -19,7 +19,7 @@
       "name": "cn",
       "files": [
         {
-          "path": "src/utils/cn.ts",
+          "path": "node_modules/@fractui/core/src/utils/cn.ts",
           "type": "util"
         }
       ],

@@ -52,12 +52,41 @@ export async function addCommand(componentName: string) {
         if (util) {
           // Copy utility files
           for (const file of util.files) {
-            const sourcePath = path.resolve(__dirname, '../', file.path);
+            // Try multiple possible source paths (same logic as components)
+            const possiblePaths = [
+              path.resolve(__dirname, '../', file.path),
+              path.resolve(__dirname, '../../', file.path),
+              path.resolve(process.cwd(), file.path),
+              path.resolve(
+                process.cwd(),
+                'node_modules/@fractui/core',
+                file.path.replace('node_modules/@fractui/core/', '')
+              ),
+              path.resolve(
+                process.cwd(),
+                'packages/fractui',
+                file.path.replace('node_modules/@fractui/core/', '')
+              ),
+            ];
+
+            let sourcePath = null;
+            for (const possiblePath of possiblePaths) {
+              if (await fs.pathExists(possiblePath)) {
+                sourcePath = possiblePath;
+                break;
+              }
+            }
+
             const destPath = path.join(process.cwd(), 'src/lib/utils', path.basename(file.path));
 
-            if (await fs.pathExists(sourcePath)) {
+            if (sourcePath) {
+              // Ensure destination directory exists
+              await fs.ensureDir(path.dirname(destPath));
               await fs.copy(sourcePath, destPath);
               console.log(chalk.green(`[✓] Copied ${utilName} utility`));
+            } else {
+              console.warn(chalk.yellow(`[!] Utility file not found. Tried:`));
+              possiblePaths.forEach(p => console.warn(chalk.yellow(`    ${p}`)));
             }
           }
         }
@@ -70,7 +99,17 @@ export async function addCommand(componentName: string) {
       const possiblePaths = [
         path.resolve(__dirname, '../', file.path),
         path.resolve(__dirname, '../../', file.path),
-        path.resolve(process.cwd(), 'packages/fractui', file.path),
+        path.resolve(process.cwd(), file.path),
+        path.resolve(
+          process.cwd(),
+          'node_modules/@fractui/core',
+          file.path.replace('node_modules/@fractui/core/', '')
+        ),
+        path.resolve(
+          process.cwd(),
+          'packages/fractui',
+          file.path.replace('node_modules/@fractui/core/', '')
+        ),
       ];
 
       let sourcePath = null;
